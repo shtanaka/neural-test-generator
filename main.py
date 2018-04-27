@@ -1,8 +1,11 @@
-from controllers import datagen
+from lib import gen_ruleset
+
+TEST_RESULT_PATH = 'data/eq2/testresult.txt'
 
 
 def main():
-    datagen.generate_logarithm_data()
+    gen_ruleset.map_data(TEST_RESULT_PATH)
+    gen_ruleset.print_clauses()
 
 
 if __name__ == "__main__":

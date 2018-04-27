@@ -1,0 +1,61 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.rules.M5Rules -M 4.0
+Relation:     eq_segundo_grau_x1
+Instances:    76370
+Attributes:   4
+              a
+              b
+              c
+              x1
+Test mode:    split 66.0% train, remainder test
+
+=== Classifier model (full training set) ===
+
+M5 pruned model rules 
+(using smoothed linear models) :
+Number of Rules : 70
+
+Rule: 1
+IF
+	b > -3.5
+	c > -0.5
+	c > 7.5
+	a <= -7.5
+THEN
+
+x1 = 
+	-0.0187 * a 
+	+ 0.0229 * b 
+	- 0.0303 * c 
+	- 0.8176 [8568/2.024%]
+
+Rule: 2
+IF
+	b > -2.5
+	c <= -0.5
+	c <= -8.5
+	a > 7.5
+THEN
+
+x1 = 
+	-0.0193 * a 
+	- 0.0232 * b 
+	- 0.0297 * c 
+	+ 0.837 [7803/1.779%]
+
+Time taken to build model: 10.34 seconds
+
+=== Evaluation on test split ===
+
+Time taken to test model on test split: 0.24 seconds
+
+=== Summary ===
+
+Correlation coefficient                  0.9989
+Mean absolute error                      0.1027
+Root mean squared error                  0.1656
+Relative absolute error                  5.6071 %
+Root relative squared error              4.8081 %
+Total Number of Instances            25966     
+
