@@ -1,4 +1,4 @@
-from lib import gen_ruleset
+from genlib import gen_ruleset
 from src.calculator import Calculator
 
 TEST_RESULT_PATH = 'data/eq2/testresult.txt'
