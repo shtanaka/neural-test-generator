@@ -34,10 +34,10 @@ def generate_data():
                     filex2.write(str(a) + ', ' + str(b) + ', ' + str(c)
                                  + ', ' + str(xs[1]) + '\n')
 
-def generate_file_path(filePath):
-    if not os.path.exists(os.path.dirname(filePath)):
+def generate_file_path(file_path):
+    if not os.path.exists(os.path.dirname(file_path)):
         try:
-            os.makedirs(os.path.dirname(filePath))
+            os.makedirs(os.path.dirname(file_path))
         except OSError as exc:  # Guard against race condition
             if exc.errno != errno.EEXIST:
                 raise

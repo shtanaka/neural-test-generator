@@ -1,4 +1,4 @@
-import os
+import os, re
 
 
 class Rule(object):
@@ -6,6 +6,7 @@ class Rule(object):
     def __init__(self):
         self.if_clauses = []
         self.then = []
+        self.inputs = []
 
     def add_if(self, if_clause):
         self.if_clauses.append(if_clause)
@@ -17,8 +18,49 @@ class Rule(object):
         return len(self.if_clauses) == 0 and len(self.then) == 0
 
 
-rule = Rule()
-rules = []
+class Rules(object):
+
+    def __init__(self):
+        self.rules = []
+
+    def all(self) -> '[] of Rule':
+        return self.rules
+
+    def get(self, index: int) -> Rule:
+        return self.rules[index]
+
+    def count(self) -> int:
+        return self.rules.__len__()
+
+    def append(self, r: Rule):
+        return self.rules.append(r)
+
+    def get_inferred_inputs_and_output(self) -> []:
+        if len(self.rules) > 0:
+            return self.__find_inputs_from_rules()
+        else:
+            return None
+
+    def __find_inputs_from_rules(self):
+        r = self.rules[0]
+        output = None
+        inputs = []
+        for thens in r.then:
+            for string in thens:
+                regex_search = re.search('[a-zA-Z]', string)
+                if regex_search:
+                    if not output:
+                        output = string
+                    else:
+                        inputs.append(string)
+        return {'inputs': inputs, 'output': output}
+
+    def __getitem__(self, index):
+        return self.rules[index]
+
+
+rule: Rule = Rule()
+rules = Rules()
 status = ''
 
 
@@ -72,9 +114,9 @@ def process_line(line_start):
 
 def print_clauses():
     global rules
-    print 'Clauses:'
-    print "============================================="
+    print('Clauses:')
+    print("=============================================")
     for r in rules:
-        print "if - " + r.if_clauses.__str__()
-        print "then - " + r.then.__str__()
-        print "============================================="
+        print("if - " + r.if_clauses.__str__())
+        print("then - " + r.then.__str__())
+        print("=============================================")
